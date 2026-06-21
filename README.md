@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Personal Portfolio — React + Tailwind + Framer Motion
 
 A premium, dark-themed software engineer portfolio. Single-page, fully responsive, built with functional components and hooks.
@@ -55,3 +56,7 @@ src/
 - The "engineer" identity is carried through typography and copy: a typed CLI line in the hero, monospace section eyebrows styled like file paths/code comments (`// 02.skills`), and tech tags styled like code badges.
 - Every section animates in on scroll via Framer Motion's `whileInView`, kept subtle and consistent rather than scattered.
 - Respects keyboard focus (`:focus-visible` outline) and is fully responsive down to small mobile widths.
+=======
+# portfolio
+personal information
+>>>>>>> 57ea541d560b6481219fd8291d1e812b642d7ec1
