@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { skillCategories, coursework, softSkills } from "../data/portfolioData";
 import * as SiIcons from "react-icons/si";
-import { FaDatabase, FaCode } from "react-icons/fa";
+import { FaDatabase, FaCode, FaHtml5, FaCss3Alt } from "react-icons/fa";
 import { 
   HiOutlineLightBulb, 
   HiOutlineUserGroup, 
@@ -15,8 +15,8 @@ import {
 // Map custom string to specific icon components if they don't match exactly
 const customIconMap = {
   Sql: FaDatabase,
-  Html: SiIcons.SiHtml5,
-  Css: SiIcons.SiCss3,
+  Html: FaHtml5,
+  Css: FaCss3Alt,
 };
 
 const softSkillIconMap = {

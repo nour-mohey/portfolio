@@ -9,18 +9,6 @@ const fadeUp = (delay = 0) => ({
   transition: { duration: 0.6, ease: "easeOut", delay },
 });
 
-const floatAnimation = (delay = 0, duration = 5, yRange = 10) => ({
-  animate: {
-    y: [0, -yRange, 0],
-  },
-  transition: {
-    duration: duration,
-    ease: "easeInOut",
-    repeat: Infinity,
-    delay: delay,
-  },
-});
-
 export default function Hero({ onOpenWork, onOpenContact }) {
   return (
     <section
@@ -92,7 +80,7 @@ export default function Hero({ onOpenWork, onOpenContact }) {
         <motion.p
           {...fadeUp(0.1)}
           className="text-white text-4xl sm:text-5xl md:text-6xl font-bold leading-tight tracking-tight"
-          style={{ fontFamily: "'Space Grotesk', sans-serif" }}
+          style={{ fontFamily: "'Outfit', sans-serif" }}
         >
           Hi, I'm
         </motion.p>
@@ -102,7 +90,7 @@ export default function Hero({ onOpenWork, onOpenContact }) {
           {...fadeUp(0.22)}
           className="font-extrabold text-5xl sm:text-6xl md:text-7xl leading-tight tracking-tight mb-10 mt-1"
           style={{
-            fontFamily: "'Space Grotesk', sans-serif",
+            fontFamily: "'Outfit', sans-serif",
             background: "linear-gradient(135deg, #4f6ef7 0%, #7c5cfc 100%)",
             WebkitBackgroundClip: "text",
             backgroundClip: "text",
@@ -188,43 +176,37 @@ export default function Hero({ onOpenWork, onOpenContact }) {
           className="w-full max-w-3xl mt-16 grid grid-cols-1 sm:grid-cols-3 gap-5 px-4"
         >
           {/* Card 1 */}
-          <motion.div {...floatAnimation(0.2, 5.4, 11)}>
-            <div className="relative group p-5 rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] transition-all duration-300 text-left h-full flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
-                <FiLayers className="text-lg" />
-              </div>
-              <h3 className="text-white font-bold text-base">Full-Stack Dev</h3>
-              <p className="text-gray-400 text-xs leading-relaxed">
-                Building secure, scalable, and responsive web applications with React, Node.js, Spring Boot & Laravel.
-              </p>
+          <div className="relative group p-5 rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] transition-all duration-300 text-left h-full flex flex-col gap-3">
+            <div className="w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400">
+              <FiLayers className="text-lg" />
             </div>
-          </motion.div>
+            <h3 className="text-white font-bold text-base">Full-Stack Dev</h3>
+            <p className="text-gray-400 text-xs leading-relaxed">
+              Building secure, scalable, and responsive web applications with React, Node.js, Spring Boot & Laravel.
+            </p>
+          </div>
 
           {/* Card 2 */}
-          <motion.div {...floatAnimation(0.5, 4.8, 13)}>
-            <div className="relative group p-5 rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] transition-all duration-300 text-left h-full flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
-                <FiCpu className="text-lg" />
-              </div>
-              <h3 className="text-white font-bold text-base">Problem Solving</h3>
-              <p className="text-gray-400 text-xs leading-relaxed">
-                Applying optimized algorithms and data structures to resolve complex logic and ECPC challenges.
-              </p>
+          <div className="relative group p-5 rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] transition-all duration-300 text-left h-full flex flex-col gap-3">
+            <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+              <FiCpu className="text-lg" />
             </div>
-          </motion.div>
+            <h3 className="text-white font-bold text-base">Problem Solving</h3>
+            <p className="text-gray-400 text-xs leading-relaxed">
+              Applying optimized algorithms and data structures to resolve complex logic and ECPC challenges.
+            </p>
+          </div>
 
           {/* Card 3 */}
-          <motion.div {...floatAnimation(0.8, 5.6, 9)}>
-            <div className="relative group p-5 rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] transition-all duration-300 text-left h-full flex flex-col gap-3">
-              <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-                <FiBookOpen className="text-lg" />
-              </div>
-              <h3 className="text-white font-bold text-base">Continuous Learning</h3>
-              <p className="text-gray-400 text-xs leading-relaxed">
-                Acquiring new technologies, testing practices, and industry standards (ISTQB & IBM certified).
-              </p>
+          <div className="relative group p-5 rounded-2xl border border-white/10 bg-slate-950/40 backdrop-blur-md hover:border-blue-500/40 hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] transition-all duration-300 text-left h-full flex flex-col gap-3">
+            <div className="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <FiBookOpen className="text-lg" />
             </div>
-          </motion.div>
+            <h3 className="text-white font-bold text-base">Continuous Learning</h3>
+            <p className="text-gray-400 text-xs leading-relaxed">
+              Acquiring new technologies, testing practices, and industry standards (ISTQB & IBM certified).
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
