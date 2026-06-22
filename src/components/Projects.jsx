@@ -40,6 +40,16 @@ function ProjectCard({ project, index }) {
                 <FiGithub /> Code
               </a>
             )}
+            {project.livedemo && (
+                <a
+                  href={project.livedemo.startsWith('http') ? project.livedemo : `https://${project.livedemo}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm text-ink hover:text-cyan-400 transition-colors"
+                >
+                  <FiExternalLink /> Live Demo
+                </a>
+              )}
             <button
               onClick={() => setOpen((o) => !o)}
               className="ml-auto inline-flex items-center gap-1.5 text-sm text-violet-400 hover:text-cyan-400 transition-colors"
@@ -62,14 +72,14 @@ function ProjectCard({ project, index }) {
                 className="overflow-hidden"
               >
                 <div className="mt-5 pt-5 border-t border-line grid sm:grid-cols-2 gap-5 text-sm">
-                  {project.problem && <Detail label="Problem solved" text={project.problem} />}
+                  {project.problem && <Detail label="Problem" text={project.problem} />}
                   {project.solution && <Detail label="Solution" text={project.solution} className="sm:col-span-2" />}
                   {project.architecture && <Detail label="Architecture" text={project.architecture} />}
                   {project.patterns && <Detail label="Design patterns" text={project.patterns} />}
-                  {project.challenges && <Detail label="Challenges" text={project.challenges} />}
                   {project.responsibilities && <DetailList label="Key responsibilities" items={project.responsibilities} />}
                   {project.features && <DetailList label="Features implemented" items={project.features} />}
-                  {project.contribution && <Detail label="My contribution" text={project.contribution} className="sm:col-span-2" />}
+                  {project.OOPconceptsapplied && <DetailList label="OOP concepts applied" items={project.OOPconceptsapplied} />}
+                  {project.algorithmsconcepts && <DetailList label="Algorithms & data structures" items={project.algorithmsconcepts} />}
                 </div>
               </motion.div>
             )}
@@ -84,7 +94,18 @@ function Detail({ label, text, className = "" }) {
   return (
     <div className={className}>
       <p className="eyebrow mb-1.5">{label}</p>
-      <p className="text-muted leading-relaxed">{text}</p>
+      {Array.isArray(text) ? (
+        <div className="flex flex-col gap-2">
+          {text.map((p, i) => (
+            <div key={i} className="flex items-start gap-2.5">
+              <span className="text-ink mr-2">-</span>
+            <p className="text-muted leading-relaxed">{p}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-muted leading-relaxed">{text}</p>
+      )}
     </div>
   );
 }

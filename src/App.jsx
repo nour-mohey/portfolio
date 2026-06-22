@@ -7,7 +7,6 @@ import SectionModal from "./components/SectionModal";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Certifications from "./components/Certifications";
-import Achievements from "./components/Achievements";
 
 // About & Contact
 import About from "./components/About";
@@ -39,12 +38,7 @@ export default function App() {
       case "projects":
         return <Projects />;
       case "certifications":
-        return (
-          <>
-            <Certifications />
-            <Achievements />
-          </>
-        );
+        return <Certifications />;
       case "contact":
         return <Contact />;
       default:
@@ -55,7 +49,7 @@ export default function App() {
   return (
     <div className="bg-base min-h-screen">
       {/* Home — Hero only */}
-      <Hero onOpenWork={() => open("projects")} />
+      <Hero onOpenWork={() => open("projects")} onOpenContact={() => open("contact")} />
 
       {/* Floating side navigation — always visible for easy section switching */}
       <SideNav onOpen={open} active={active} />

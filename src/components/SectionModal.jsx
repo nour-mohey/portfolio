@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { HiX } from "react-icons/hi";
 
 export default function SectionModal({ open, activeSection, onChangeSection, onClose, children }) {
   const scrollRef = useRef(null);
@@ -56,9 +55,9 @@ export default function SectionModal({ open, activeSection, onChangeSection, onC
               }}
             >
               <p
-                className="font-display font-bold text-lg text-center"
+                className="font-display font-bold text-2xl sm:text-3xl text-center"
                 style={{
-                  background: "linear-gradient(135deg, #4f6ef7 0%, #7c5cfc 100%)",
+                  background: "linear-gradient(135deg, #818cf8 0%, #22d3ee 100%)",
                   WebkitBackgroundClip: "text",
                   backgroundClip: "text",
                   color: "transparent",

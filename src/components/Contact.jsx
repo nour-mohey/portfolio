@@ -1,23 +1,9 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker } from "react-icons/hi";
+import { HiOutlineMail, HiOutlinePhone, HiOutlineLocationMarker, HiOutlineDocumentDownload } from "react-icons/hi";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
 import { profile } from "../data/portfolioData";
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState("idle"); // idle | sent
-
-  function handleChange(e) {
-    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    // No backend wired up — replace with your form endpoint or API call.
-    setStatus("sent");
-  }
-
   const contactItems = [
     { icon: HiOutlineMail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
     { icon: HiOutlinePhone, label: "Phone", value: profile.phone, href: `tel:${profile.phone}` },
@@ -25,9 +11,50 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="section-pad max-w-6xl mx-auto px-5 sm:px-8">
+    <section id="contact" className="section-pad max-w-6xl mx-auto px-5 sm:px-8 flex justify-center">
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="glass rounded-2xl p-8 sm:p-10 w-full max-w-lg text-center space-y-6"
+      >
+        {/* Heading */}
+        <div>
+          <h3 className="text-ink text-xl font-semibold">Get in Touch</h3>
+          <p className="text-muted text-sm mt-1">Feel free to reach out anytime</p>
+        </div>
 
-      <div className="grid md:grid-cols-[0.85fr,1.15fr] gap-8">
+        {/* Download CV Button */}
+        <motion.a
+          href={profile.cvUrl}
+          target="_blank"
+          rel="noreferrer"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.15 }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          className="relative group flex items-center justify-center gap-3 w-full py-3.5 rounded-xl font-medium text-sm text-white overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, #4f6ef7 0%, #7c5cfc 50%, #06b6d4 100%)",
+          }}
+        >
+          {/* Shimmer overlay */}
+          <span
+            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+            style={{
+              background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%)",
+              backgroundSize: "200% 100%",
+              animation: "shimmer 1.5s infinite",
+            }}
+          />
+          <HiOutlineDocumentDownload className="text-lg relative z-10" />
+          <span className="relative z-10">Download CV</span>
+        </motion.a>
+
+        {/* Contact Items */}
         <div className="space-y-4">
           {contactItems.map((c, i) => {
             const Icon = c.icon;
@@ -35,19 +62,19 @@ export default function Contact() {
             return (
               <motion.div
                 key={c.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.08 }}
+                transition={{ duration: 0.35, delay: i * 0.1 }}
               >
                 <Wrapper
                   {...(c.href ? { href: c.href } : {})}
-                  className="glass glass-hover rounded-xl p-5 flex items-center gap-4 block"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-white/[0.03] border border-line/50 hover:border-cyan-400/30 transition-colors"
                 >
                   <div className="w-10 h-10 rounded-lg bg-grad-primary/15 flex items-center justify-center text-cyan-400 text-lg shrink-0">
                     <Icon />
                   </div>
-                  <div>
+                  <div className="text-left">
                     <p className="text-muted text-xs">{c.label}</p>
                     <p className="text-ink text-sm font-medium mt-0.5">{c.value}</p>
                   </div>
@@ -55,91 +82,33 @@ export default function Contact() {
               </motion.div>
             );
           })}
-
-          <div className="flex gap-3 pt-2">
-            <a
-              href={profile.social.github}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-ghost w-11 h-11 rounded-xl flex items-center justify-center text-ink text-lg"
-              aria-label="GitHub"
-            >
-              <FiGithub />
-            </a>
-            <a
-              href={profile.social.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-ghost w-11 h-11 rounded-xl flex items-center justify-center text-ink text-lg"
-              aria-label="LinkedIn"
-            >
-              <FiLinkedin />
-            </a>
-          </div>
         </div>
 
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          onSubmit={handleSubmit}
-          className="glass rounded-2xl p-6 sm:p-7 space-y-4"
-        >
-          <div>
-            <label htmlFor="name" className="text-xs text-muted">
-              Name
-            </label>
-            <input
-              id="name"
-              name="name"
-              required
-              value={form.name}
-              onChange={handleChange}
-              placeholder="Jane Doe"
-              className="w-full mt-1.5 bg-white/[0.03] border border-line rounded-lg px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 focus:border-cyan-400/50 outline-none transition-colors"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="text-xs text-muted">
-              Email
-            </label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              value={form.email}
-              onChange={handleChange}
-              placeholder="jane@email.com"
-              className="w-full mt-1.5 bg-white/[0.03] border border-line rounded-lg px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 focus:border-cyan-400/50 outline-none transition-colors"
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="text-xs text-muted">
-              Message
-            </label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows={4}
-              value={form.message}
-              onChange={handleChange}
-              placeholder="Tell me about your project or role..."
-              className="w-full mt-1.5 bg-white/[0.03] border border-line rounded-lg px-4 py-2.5 text-sm text-ink placeholder:text-muted/60 focus:border-cyan-400/50 outline-none transition-colors resize-none"
-            />
-          </div>
-          <button type="submit" className="btn-primary w-full py-3 rounded-lg text-sm">
-            {status === "sent" ? "Message sent ✓" : "Send message"}
-          </button>
-          {status === "sent" && (
-            <p className="text-cyan-400 text-xs text-center">
-              Thanks — I'll get back to you soon.
-            </p>
-          )}
-        </motion.form>
-      </div>
+        {/* Divider */}
+        <div className="border-t border-line/40" />
+
+        {/* Social Icons */}
+        <div className="flex justify-center gap-3">
+          <a
+            href={profile.social.github}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-ghost w-11 h-11 rounded-xl flex items-center justify-center text-ink text-lg hover:text-cyan-400 transition-colors"
+            aria-label="GitHub"
+          >
+            <FiGithub />
+          </a>
+          <a
+            href={profile.social.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="btn-ghost w-11 h-11 rounded-xl flex items-center justify-center text-ink text-lg hover:text-cyan-400 transition-colors"
+            aria-label="LinkedIn"
+          >
+            <FiLinkedin />
+          </a>
+        </div>
+      </motion.div>
     </section>
   );
 }
